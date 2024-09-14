@@ -5,3 +5,15 @@ type Query
 
 
 #import models/*.graphql
+
+type Mutation {
+    createPost(input: inputPost! @spread):Post @create
+    updatePost(id: ID!, title:String!): Post @update
+    deletePost(id: ID! @eq): Post @delete
+}
+
+input inputPost {
+    user_id: Int!
+    title: String!
+    @rules(apply: ["string","min:3"])
+}
